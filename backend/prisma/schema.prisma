@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id         String       @id @default(uuid())
+    email      String       @unique
+    firstName  String?
+    lastName   String?
+    picture    String?
+    createdAt  DateTime     @default(now())
+    updatedAt  DateTime     @updatedAt
+    googleAuth GoogleAuth[]
+}
+
+model GoogleAuth {
+    id          String   @id @default(uuid())
+    googleId    String   @unique
+    email       String   @unique
+    accessToken String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId      String
+}

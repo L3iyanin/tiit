@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	margin: 0;
+	padding: 0;
+	// height: 10000px;
+	// margin-bottom: 80px;
+}
+
+:root {
+	--toastify-icon-color-success: #379956;
+	--toastify-color-progress-success: #379956;
+	--toastify-color-success: #379956;
+	--toastify-color-info: #151b26;
+	--toastify-color-error: #F36667;
+}

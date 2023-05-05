@@ -1,2 +1,4 @@
-# tiit
-think Ai hackathon
+# toot
+gymip fitness community
+
+toot is the sound we do when lifting heavy weight
