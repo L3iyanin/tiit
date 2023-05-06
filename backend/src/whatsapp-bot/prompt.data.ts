@@ -31,7 +31,7 @@ list of bad word nouns:
 - zeb
 - terma
 - 9elwa
-- Kar
+- ker
 - zok
 - kerr
 

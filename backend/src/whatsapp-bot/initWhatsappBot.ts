@@ -3,13 +3,16 @@ import { linkGroupWithUser, moderateMessage } from "./moderateMessage";
 const qrcode = require("qrcode-terminal");
 const { Client, LocalAuth } = require("kasimat-shira2");
 
+
+console.log("Whatsapp Bot is starting...");
+
 export const client = new Client({
 	puppeteer: {
 		args: ["--no-sandbox"],
 	},
 	authStrategy: new LocalAuth({
 		clientId: "moderator",
-		dataPath: "./src/whatsappBot/savedSession",
+		dataPath: "./src/whatsapp-bot/savedSession",
 		// dataPath: "./savedSession,
 		saveLogin: true,
 	}),
