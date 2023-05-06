@@ -5,7 +5,7 @@ import GoogleBtn from "../components/UI/Buttons/GoogleBtn";
 const Login = () => {
 	return (
 		<>
-			<main className="bg-main h-screen bg-cover py-24 px-11 overflow-hidden">
+			<main className="bg-main h-screen bg-cover py-24 px-11">
 				<div className="flex flex-col gap-4 justify-center items-center">
 					<Logo className="fill-white" />
 					<h1 className="text-5xl font-bold text-white text-center">

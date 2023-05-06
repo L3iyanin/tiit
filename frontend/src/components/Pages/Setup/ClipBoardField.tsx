@@ -18,7 +18,7 @@ const ClipBoardField: React.FC<IClipBoardFieldProps> = ({ text }) => {
 	}
 
 	return (
-		<div className="flex rounded border border-primary justify-between items-center min-w-[144px]">
+		<div className="flex rounded border border-primary justify-between items-center">
 			<p className="text-xs font-bold text-primary py-1 pl-4 pr-7">{text}</p>
 			<div className="flex items-center justify-center bg-primary p-2" onClick={() => copyText(text)}>
 				<CopyIcon className="w-3 h-3"/>
