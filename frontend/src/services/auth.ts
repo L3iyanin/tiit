@@ -1,6 +1,7 @@
-import axios from "axios";
-import { IAuthResponse } from "../../../shared/interfaces/General";
 
-export const authWithYouCanApi = (code: string): Promise<{data: IAuthResponse}> => {
-	return axios.post(`/auth/login-with-youcan`, { code });
-}
+import axios from "axios";
+import { IGoogleLogin } from "../../../shared/interfaces/Auth";
+
+export const getUserAuthData = ( query: string ): Promise<{ data: IGoogleLogin }> => {
+	return axios.get(`/google/callback?${query}`);
+};

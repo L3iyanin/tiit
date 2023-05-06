@@ -2,14 +2,22 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Landing from "../pages/Landing";
 import Login from "../pages/Login";
+import { CenteredLoadingSpinner } from "../components/UI/Loading/LoadingSpinner";
+import GoogleAuthCallback from "../pages/GoogleAuthCallback";
 const Home = lazy(() => import("../pages/Home"));
 const NotRequireAuth = lazy(() => import("./NotRequireAuth"));
 const RequireAuth = lazy(() => import("./RequireAuth"));
 
-export const routes: any = {
+export const routes: {
+	landing: string;
+	home: string;
+	login: string;
+	googleCallback: string;
+} = {
 	landing: "/",
 	home: "/home",
-	login: "login",
+	login: "/login",
+	googleCallback: "/auth/google/callback",
 };
 
 const Router: React.FC = () => {
@@ -18,9 +26,7 @@ const Router: React.FC = () => {
 			<BrowserRouter>
 				<Suspense
 					fallback={
-						<div style={{ textAlign: "center", marginTop: "1rem" }}>
-							Loading...
-						</div>
+						<CenteredLoadingSpinner />
 					}
 				>
 					<Routes>
@@ -31,11 +37,15 @@ const Router: React.FC = () => {
 						<Route element={<NotRequireAuth />}>
 							<Route
 								path={routes.landing}
-								element={<Landing />}
+								element={<Login />}
 							/>
 							<Route
 								path={routes.login}
 								element={<Login />}
+							/>
+							<Route
+								path={routes.googleCallback}
+								element={<GoogleAuthCallback />}
 							/>
 						</Route>
 

@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { CenteredLoadingSpinner } from "../components/UI/Loading/LoadingSpinner";
-
-import { IUserState } from "../utils/types/user";
 import { routes } from "./Router";
 
 function RequireAuth({ children }: { children?: JSX.Element }) {
