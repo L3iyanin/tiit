@@ -1,4 +1,5 @@
-// import { notifyMe } from "src/errorHandling/logger";
+import { linkGroupWithUser, moderateMessage } from "./moderateMessage";
+
 const qrcode = require("qrcode-terminal");
 const { Client, LocalAuth } = require("kasimat-shira2");
 
@@ -8,8 +9,8 @@ export const client = new Client({
 	},
 	authStrategy: new LocalAuth({
 		clientId: "moderator",
-		// dataPath: "./src/whatsappBot",
-		dataPath: "./savedSession",
+		dataPath: "./src/whatsappBot/savedSession",
+		// dataPath: "./savedSession,
 		saveLogin: true,
 	}),
 });
@@ -17,7 +18,6 @@ export const client = new Client({
 client.initialize();
 
 client.on("qr", (qr: any) => {
-	// Generate and scan this code with your phone
 	qrcode.generate(qr, { small: true });
 });
 
@@ -26,9 +26,11 @@ client.on("ready", () => {
 });
 
 client.on("message", async (message) => {
-	console.log(message.author);
-	console.log(message);
-	await message.delete(true);
+	if (message.body.startsWith("link-my-group")) {
+		await linkGroupWithUser(message);
+		return;
+	}
+	await moderateMessage(message);
 });
 
 client.on("disconnected", (reason) => {

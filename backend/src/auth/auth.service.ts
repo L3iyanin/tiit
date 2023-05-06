@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
 import { JwtService } from "@nestjs/jwt";
-import { throwServiceError } from "src/errorHandling/logger";
+import { throwServiceError } from "src/error-handling/logger";
 
 @Injectable()
 export class AuthService {

@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
 import { AuthService } from "../auth.service";
-import { notifyMe } from "src/errorHandling/logger";
+import { notifyMe, throwServiceError } from "src/error-handling/logger";
+import { IGoogleLogin } from "../../../../shared/interfaces/Auth";
 
 @Injectable()
 export class GoogleService {
@@ -11,9 +12,9 @@ export class GoogleService {
 		this.prisma = new PrismaClient();
 	}
 
-	async googleLogin(req) {
+	async googleLogin(req): Promise<IGoogleLogin> {
 		if (!req.user) {
-			return "Error logging in with google";
+			throwServiceError("No user found", "GoogleService.googleLogin");
 		}
 
 		let user = await this.prisma.user.findUnique({
@@ -43,7 +44,10 @@ export class GoogleService {
 				},
 			});
 
-			notifyMe("New user 🎉",`New user created with google: ${req.user.email}, ${req.user.firstName} ${req.user.lastName}`)
+			notifyMe(
+				"New user 🎉",
+				`New user created with google: ${req.user.email}, ${req.user.firstName} ${req.user.lastName}`
+			);
 
 			message = "successfully created new user with google";
 		}

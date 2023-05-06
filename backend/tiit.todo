@@ -1,0 +1,3 @@
+[Done✅] make bot work
+[] make bot reply with "I cannot process this message right now, because of openai free account limitations, try again later"
+[] save message to the database
