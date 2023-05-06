@@ -1,14 +1,23 @@
-import Footer from "../components/Footer/Footer";
 import Navbar from "../components/NavBar/Navbar";
-import StatsSection from "../components/Pages/Home/StatsSection";
+
+import { ReactComponent as Step1Illu } from "../assets/icons/Step1Illu.svg";
+import { ReactComponent as Step2Illu } from "../assets/icons/Step2Illu.svg";
+import React, { useState } from "react";
+import Learn from "../components/Pages/Home/Learn";
+import Logs from "../components/Pages/Home/Logs";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
+	
+
 	return (
 		<>
 			<Navbar />
-			{/* components for home page  */}
-			<StatsSection />
-			{/* components for home page  */}
+			<main className="">
+				<Learn />
+				<div className="h-[2px] w-full bg-primary my-6"></div>
+				<Logs />
+			</main>
 			<Footer />
 		</>
 	);
