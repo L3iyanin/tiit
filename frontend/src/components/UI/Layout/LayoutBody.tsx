@@ -1,8 +1,10 @@
 
-interface ILayoutBodyProps {
+interface IBodyLayoutProps {
 	children: React.ReactNode;
 }
 
-const LayoutBody: React.FC<ILayoutBodyProps> = ({ children }) => {
-	  return <div className="">{children}</div>;
+const BodyLayout: React.FC<IBodyLayoutProps> = ({ children }) => {
+	  return <div className="relative min-h-screen pb-16">{children}</div>;
 };
+
+export default BodyLayout;

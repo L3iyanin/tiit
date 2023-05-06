@@ -7,6 +7,7 @@ import Footer from "../components/Footer/Footer";
 import Step from "../components/Pages/Setup/Step";
 import ClipBoardField from "../components/Pages/Setup/ClipBoardField";
 import { useEffect, useState } from "react";
+import BodyLayout from "../components/UI/Layout/LayoutBody";
 
 const Setup = () => {
 	const [token, setToken] = useState("TiiT-756089");
@@ -16,7 +17,7 @@ const Setup = () => {
 	}, []);
 
 	return (
-		<>
+		<BodyLayout>
 			<Navbar />
 			<main className="px-5 py-6">
 				<h1 className="text-base font-bold text-primary mb-4 text-center">Remove bad words in 2 steps:</h1>
@@ -26,7 +27,8 @@ const Setup = () => {
 					<Step {...steps[2]} attachement={token} />
 				</div>
 			</main>
-		</>
+			<Footer />
+		</BodyLayout>
 	);
 };
 

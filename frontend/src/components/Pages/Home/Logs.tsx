@@ -32,7 +32,7 @@ const Logs = () => {
 	return (
 		<section className="px-5">
 			<h1 className="text-base font-bold text-primary text-center my-4">Deleted messages:</h1>
-			<div className="flex flex-col gap-3 pb-7">
+			<div className="flex flex-col gap-3 pb-1">
 				{messages.map((msg, index) => (
 					<Message
 						key={index}
