@@ -11,12 +11,15 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				"primary": "#F9FAF5",
-				"secondary": "#26282C",
+				"primary": "#063940",
+				"secondary": "#000000",
 			},
 			fontFamily: {
 				poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
-			}
+			},
+			backgroundImage: {
+				main: "url('/src/assets/backgrounds/Messhy.svg')"
+			},
 		},
 	},
 };
