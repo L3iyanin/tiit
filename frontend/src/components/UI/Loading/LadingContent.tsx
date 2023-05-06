@@ -7,7 +7,6 @@ const LadingContent: React.FC = () => {
 		<div className="flex flex-col gap-10">
 				<Navbar />
 				<CenteredLoadingSpinner />
-				<Footer />
 			</div>
 	);
 };
