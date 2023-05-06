@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
 	};
 
 	return (
-		<div className="navbar flex justify-between items-center px-5 py-3 border border-[#D9D9D9]">
+		<div className="navbar flex justify-between items-center px-5 py-3 border-b border-[#D9D9D9]">
 			<Logo className="w-10 h-8 fill-primary"/>
 			<button className="text-white text-xs font-medium bg-primary rounded px-4 py-1">Logout</button>
 		</div>

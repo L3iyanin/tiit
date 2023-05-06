@@ -13,6 +13,8 @@ module.exports = {
 			colors: {
 				"primary": "#007978",
 				"secondary": "#000000",
+				red : "#F97068",
+				success: "#29A2B2",
 			},
 			fontFamily: {
 				poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
