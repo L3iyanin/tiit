@@ -21,7 +21,6 @@ const Login = () => {
 					<GoogleBtn />
 				</div>
 			</main>
-			<Footer />
 		</>
 	);
 };

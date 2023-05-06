@@ -26,7 +26,6 @@ const Setup = () => {
 					</article>
 				</div>
 			</main>
-			<Footer />
 		</>
 	);
 };
