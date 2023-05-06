@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Landing from "../pages/Landing";
 import Login from "../pages/Login";
 import { CenteredLoadingSpinner } from "../components/UI/Loading/LoadingSpinner";
 import GoogleAuthCallback from "../pages/GoogleAuthCallback";

@@ -26,7 +26,6 @@ const Setup = () => {
 					<Step {...steps[2]} attachement={token} />
 				</div>
 			</main>
-			<Footer />
 		</>
 	);
 };
