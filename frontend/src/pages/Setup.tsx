@@ -2,6 +2,7 @@ import Navbar from "../components/NavBar/Navbar";
 
 import { ReactComponent as Step1Illu } from "../assets/icons/Step1Illu.svg";
 import { ReactComponent as Step2Illu } from "../assets/icons/Step2Illu.svg";
+import Footer from "../components/Footer/Footer";
 
 const Setup = () => {
 	return (
@@ -25,6 +26,7 @@ const Setup = () => {
 					</article>
 				</div>
 			</main>
+			<Footer />
 		</>
 	);
 };
