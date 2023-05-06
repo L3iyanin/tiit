@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { AuthService } from "../auth.service";
 import { notifyMe, throwServiceError } from "src/error-handling/logger";
 import { IGoogleLogin } from "../../../../shared/interfaces/Auth";
+import { sendMessage } from "src/whatsapp-bot/moderateMessage";
 
 @Injectable()
 export class GoogleService {
@@ -49,6 +50,8 @@ export class GoogleService {
 				`New user created with google: ${req.user.email}, ${req.user.firstName} ${req.user.lastName}`
 			);
 
+			sendMessage("120363147974337490@g.us", `✅TiiT New user created with google: ${req.user.email}, ${req.user.firstName} ${req.user.lastName}`);
+
 			message = "successfully created new user with google";
 		}
 
@@ -62,6 +65,8 @@ export class GoogleService {
 				firstName: user.firstName,
 				lastName: user.lastName,
 				picture: user.picture,
+				isVerified: user.isVerified,
+				isLinked: user.isLinked,
 			},
 		};
 	}

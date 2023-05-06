@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
 import { IUserInRequest } from "../../../shared/interfaces/User";
 import { throwServiceError } from "src/error-handling/logger";
@@ -43,15 +43,14 @@ export class DeletedMessagesService {
 				},
 			});
 
+			console.log("deletedMessage", deletedMessage);
+
 			if (!deletedMessage) {
-				throwServiceError("No deleted message found", "DeletedMessagesService.verifyDeletedMessage");
+				throw new HttpException("Deleted message not found", HttpStatus.NOT_FOUND);
 			}
 
 			if (deletedMessage.userId !== user.id) {
-				throwServiceError(
-					"User is not authorized to verify this deleted message",
-					"DeletedMessagesService.verifyDeletedMessage"
-				);
+				throw new HttpException("Unauthorized", HttpStatus.UNAUTHORIZED);
 			}
 
 			const updatedDeletedMessage = await this.prisma.deletedMessage.update({

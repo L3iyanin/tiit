@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { basePrompt } from "./basePrompt.data";
+import { basePrompt } from "./prompt.data";
 import { client } from "./initWhatsappBot";
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -33,6 +33,11 @@ async function getResponseFromChatGpt(prompt): Promise<string> {
 
 export async function moderateMessage(message) {
 	try {
+		const user = await prisma.user.findUnique({
+			where: {
+				whatsappGroupId: message.from,
+			},
+		});
 		console.log("📧 📧 📧 message: " + message.body);
 		const reply = await getResponseFromChatGpt(basePrompt + message.body);
 		console.log("reply: " + reply);
@@ -45,11 +50,12 @@ export async function moderateMessage(message) {
 		}
 		if (isBad) {
 			message.delete(true);
+			console.log(message);
 			client.sendMessage(
 				message.from,
 				"Your message was deleted because it was flagged as offensive or against the community's policies.\nif you think this was a mistake, please contact the moderators."
 			);
-			await saveDeletedMessage(message);
+			await saveDeletedMessage(message, user);
 		}
 	} catch (err) {
 		console.log("❌error in moderateMessage: " + err);
@@ -59,7 +65,7 @@ export async function moderateMessage(message) {
 export async function linkGroupWithUser(message) {
 	try {
 		message.reply("🔄linking group with user...");
-		const userId = message.body().split(" ")[1];
+		const userId = message.body.split(" ")[1];
 
 		const user = await prisma.user.findUnique({
 			where: {
@@ -88,22 +94,24 @@ export async function linkGroupWithUser(message) {
 	}
 }
 
-async function saveDeletedMessage(message) {
+async function saveDeletedMessage(message, user) {
 	try {
-		const user = await prisma.user.findUnique({
-			where: {
-				whatsappGroupId: message.from,
-			},
-		});
-
 		const deletedMessage = await prisma.deletedMessage.create({
 			data: {
-				userId: message.from,
+				userId: user.id,
 				text: message.body,
 			},
 		});
 		console.log("deletedMessage: " + deletedMessage);
 	} catch (err) {
 		console.log("❌error in saveDeletedMessage: " + err);
+	}
+}
+
+export async function sendMessage(to, message) {
+	try {
+		client.sendMessage(to, message);
+	} catch (err) {
+		console.log("❌error in sendMessage: " + err);
 	}
 }

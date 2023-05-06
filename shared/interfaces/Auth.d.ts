@@ -3,6 +3,9 @@ export interface IUserLogged {
 	firstName: string;
 	lastName: string;
 	picture: string;
+	isVerified: boolean;
+	isLinked: boolean;
+
 }
 
 export interface IGoogleLogin {
