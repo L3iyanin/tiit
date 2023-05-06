@@ -27,7 +27,6 @@ const GoogleAuthCallback: React.FC = () => {
 				})
 				.catch((err) => {
 					console.error("err", err);
-					// router.push(routes.landing);
 					navigate(routes.login);
 				})
 		}
