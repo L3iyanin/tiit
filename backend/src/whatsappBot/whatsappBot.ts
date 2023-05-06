@@ -15,5 +15,5 @@ export const moderateMessage = async (message: any) => {
 };
 
 const deleteMessage = async (message: any) => {
-	await message.delete(true);
+	// await message.delete(true);
 };

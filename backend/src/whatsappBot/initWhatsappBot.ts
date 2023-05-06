@@ -1,8 +1,11 @@
 // import { notifyMe } from "src/errorHandling/logger";
 const qrcode = require("qrcode-terminal");
-const { Client, LocalAuth } = require("whatsapp-web.js");
+const { Client, LocalAuth } = require("kasimat-shira2");
 
 export const client = new Client({
+	puppeteer: {
+		args: ["--no-sandbox"],
+	},
 	authStrategy: new LocalAuth({
 		clientId: "moderator",
 		// dataPath: "./src/whatsappBot",
@@ -23,6 +26,8 @@ client.on("ready", () => {
 });
 
 client.on("message", async (message) => {
+	console.log(message.author);
+	console.log(message);
 	await message.delete(true);
 });
 
