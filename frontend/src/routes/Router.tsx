@@ -32,11 +32,12 @@ const Router: React.FC = () => {
 					}
 				>
 					<Routes>
-						<Route element={<RequireAuth />}></Route>
-
-						<Route element={<NotRequireAuth />}>
+						<Route element={<RequireAuth />}>
 							<Route path={routes.home} element={<Home />} />
 							<Route path={routes.setup} element={<Setup />} />
+						</Route>
+
+						<Route element={<NotRequireAuth />}>
 							<Route path={routes.googleCallback} element={<GoogleAuthCallback />} />
 							<Route path={routes.landing} element={<Login />} />
 							<Route path={routes.login} element={<Login />} />

@@ -18,12 +18,12 @@ const GoogleAuthCallback: React.FC = () => {
 			getUserAuthData(queryString)
 				.then((res) => {
 					dispatch(login(res.data));
-					if (res.data.newUser) {
+					// if (res.data.newUser) {
 						navigate(routes.home);
-					}
-					else {
-						navigate(routes.home);
-					}
+					// }
+					// else {
+					// 	navigate(routes.home);
+					// }
 				})
 				.catch((err) => {
 					console.error("err", err);

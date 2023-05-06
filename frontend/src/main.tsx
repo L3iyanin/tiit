@@ -7,7 +7,6 @@ import axios from "axios";
 import ErrorAlert from "./components/UI/Alerts/ErrorAlert";
 import { logout } from "./reducers/UserSlice";
 import { USER_KEY } from "./utils/constants/settings";
-import { IUserWithToken } from "./utils/types/user";
 
 import "@fontsource/poppins";
 import "@fontsource/poppins/400.css";
@@ -17,7 +16,7 @@ import "@fontsource/poppins/700.css";
 
 import "./styles/global.scss";
 
-axios.defaults.baseURL = `${import.meta.env.VITE_APP_API_BASE_URL}`;
+axios.defaults.baseURL = `${import.meta.env.VITE_APP_API_BACKEND_ENDPOINT}`;
 
 axios.interceptors.request.use(
 	(config: any) => {
