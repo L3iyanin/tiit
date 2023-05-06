@@ -1,4 +1,2 @@
-# toot
-gymip fitness community
-
-toot is the sound we do when lifting heavy weight
+# Tiit 
+anti bad words AI bot, that deletes bad words

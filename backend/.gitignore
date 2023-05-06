@@ -2,7 +2,7 @@
 .env
 /prisma/dev.db*
 /prisma/migrations/*
-
+/src/whatsappBot/savedSession
 # compiled output
 .env
 /dist
