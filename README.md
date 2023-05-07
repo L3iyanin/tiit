@@ -8,7 +8,7 @@ Tiit is a Whatsapp moderator bot that detects and deletes messages with offensiv
 ## Challenge type
 - Ai product
 
-## Used APis
+## Used APIs
 - ChatGpt
 - Whatsapp API
 
