@@ -7,7 +7,9 @@ Tiit is a Whatsapp moderator bot that detects and deletes messages with offensiv
 
 ## Supported languages
 🇲🇦 Darija
+
 🇫🇷 French
+
 🇺🇸 English
 
 ## Challenge type
