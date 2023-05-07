@@ -39,6 +39,10 @@ export class UsersService {
 				throw new HttpException("User not found", HttpStatus.NOT_FOUND);
 			}
 
+			if (userToVerify.isVerified) {
+				throw new HttpException("User already verified", HttpStatus.BAD_REQUEST);
+			}
+
 			const updatedUser = await this.prisma.user.update({
 				where: {
 					id: userId,

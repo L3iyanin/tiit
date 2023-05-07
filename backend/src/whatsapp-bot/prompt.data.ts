@@ -1,3 +1,102 @@
+// ##      ##    ###    ########  ##    ## #### ##    ##  ######
+// ##  ##  ##   ## ##   ##     ## ###   ##  ##  ###   ## ##    ##
+// ##  ##  ##  ##   ##  ##     ## ####  ##  ##  ####  ## ##
+// ##  ##  ## ##     ## ########  ## ## ##  ##  ## ## ## ##   ####
+// ##  ##  ## ######### ##   ##   ##  ####  ##  ##  #### ##    ##
+// ##  ##  ## ##     ## ##    ##  ##   ###  ##  ##   ### ##    ##
+//  ###  ###  ##     ## ##     ## ##    ## #### ##    ##  ######
+// ❌ warning again, in case you haven't read the big one
+// ❌ This file includes bad words in darija, it's meant to be used by a bot.
+// if you are not comfortable with that, you know what to do
+// else scroll down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const basePrompt = `
 you will act as my api. return true when you find an offensive message, and false otherwise.
 I'll give you a list of bad words in darija and let me know if a message has intention to be a bad word.
@@ -34,12 +133,21 @@ list of bad word nouns:
 - ker
 - zok
 - kerr
+- moussekh
+- kelb
+- kelba
+- zebel
+- zok
+- terma
+- kharza
+- sowa
 
 list of bad word adjectives:
 
 - 7mar
 - zaml
 - zamel
+- beghal
 - 3etay
 - 97ba
 - ka7ba
@@ -68,6 +176,8 @@ list of bad word Insult:
 - lah yn3el din dmok
 - ta mal rebek
 - yedek fih
+- allah ye7rek taboun mok
+- illa jit ghan7wi taboun mok
 
 List of words usually used with an insult:
 

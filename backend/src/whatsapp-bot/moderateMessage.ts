@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { basePrompt } from "./prompt.data";
 import { client } from "./initWhatsappBot";
+import { HttpException, HttpStatus } from "@nestjs/common";
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
@@ -122,5 +123,40 @@ export async function sendMessage(to, message) {
 }
 
 export async function verifyUser(message) {
-	
+	try {
+		if (!process.env.TIIT_ADMINS.includes(message.author)) {
+			message.reply("You are not an admin");
+			return;
+		}
+
+		const email = message.body.split(" ")[1];
+
+
+
+		const userToVerify = await prisma.user.findUnique({
+			where: {
+				email: email,
+			},
+		});
+
+		if (!userToVerify) {
+			throw new HttpException("User not found", HttpStatus.NOT_FOUND);
+		}
+
+		if (userToVerify.isVerified) {
+			throw new HttpException("User already verified", HttpStatus.BAD_REQUEST);
+		}
+
+		const updatedUser = await prisma.user.update({
+			where: {
+				email: email,
+			},
+			data: {
+				isVerified: true,
+			},
+		});
+
+	} catch (err) {
+		console.log("❌error in verifyUser: " + err);
+	}
 }
