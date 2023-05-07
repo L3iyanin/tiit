@@ -22,7 +22,6 @@ axios.interceptors.request.use(
 	(config: any) => {
 		const userData = localStorage.getItem(USER_KEY);
 
-		
 		if (userData) {
 			const savedUser = JSON.parse(userData) as IUserWithToken;
 			config.headers["Authorization"] = `Bearer ${savedUser.accessToken}`;
@@ -40,19 +39,16 @@ axios.interceptors.response.use(
 	function (error) {
 		if (error.response && error.response.status == 401) {
 			store.dispatch(logout());
-		}
-		else {
+		} else {
 			ErrorAlert(error);
 		}
-		
+
 		return Promise.reject(error);
 	}
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-		</Provider>
-	</React.StrictMode>
+	<Provider store={store}>
+		<App />
+	</Provider>
 );

@@ -4,26 +4,46 @@ import { CenteredLoadingSpinner } from "../../UI/Loading/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { fakeMessages } from "../../../data/messages";
 import { removeMessage, setMessages } from "../../../reducers/MessagesSlice";
+import { getDeletedMessagesApi, setMessagesIsInsultApi, setMessagesIsOkayApi } from "../../../services/messages";
+import { IDeletedMessage } from "../../../../../shared/interfaces/DeletedMessage";
+import { SuccessAlertWithMessage } from "../../UI/Alerts/SuccesAlert";
 
 const Logs = () => {
 
-	const messages: IMessage[] | null = useSelector((state: any) => state.messages.messages);
+	const messages: IDeletedMessage[] | null = useSelector((state: any) => state.messages.messages);
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (fakeMessages) {
-			dispatch(setMessages(fakeMessages));
-		}
+
+		getDeletedMessagesApi()
+			.then((res) => {
+				dispatch(setMessages(res.data.deletedMessages));
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}, []);
 
 	const onMessageItsOkayHandler = (id: string) => {
-		console.log(id);
+		setMessagesIsOkayApi(id)
+			.then((res) => {
+				SuccessAlertWithMessage(res.data.message)
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		dispatch(removeMessage(id));
 	};
 	
 	const onMessageItsInsultHandler = (id: string) => {
-		console.log(id);
+		setMessagesIsInsultApi(id)
+			.then((res) => {
+				SuccessAlertWithMessage(res.data.message)
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		dispatch(removeMessage(id));
 	};
 

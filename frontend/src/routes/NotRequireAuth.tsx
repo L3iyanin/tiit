@@ -9,6 +9,14 @@ function NotRequireAuth({ children }: { children?: JSX.Element }) {
 
 	if (userData.isLoading) return <CenteredLoadingSpinner />;
 
+	if (userData.isLoggedIn && !userData.user?.isVerified) {
+		return <Navigate to={routes.unverified} state={{ from: location }} replace />;
+	}
+
+	if (userData.isLoggedIn && !userData.user?.isLinked) {
+		return <Navigate to={routes.setup} state={{ from: location }} replace />;
+	}
+
 	if (userData.isLoggedIn) {
 		return <Navigate to={routes.home} state={{ from: location }} replace />;
 	}

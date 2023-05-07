@@ -1,9 +1,10 @@
 interface IUserLogged {
-	username: string;
 	firstName: string;
 	lastName: string;
 	email: string;
 	picture: string;
+	isLinked: boolean;
+	isVerified: boolean;
 }
 
 interface IUserState {

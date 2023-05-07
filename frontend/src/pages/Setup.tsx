@@ -8,12 +8,19 @@ import Step from "../components/Pages/Setup/Step";
 import ClipBoardField from "../components/Pages/Setup/ClipBoardField";
 import { useEffect, useState } from "react";
 import BodyLayout from "../components/UI/Layout/LayoutBody";
+import { getVerifyCodeApi } from "../services/verify";
 
 const Setup = () => {
-	const [token, setToken] = useState("TiiT-756089");
+	const [token, setToken] = useState("");
 
 	useEffect(() => {
-		//fetch token
+		getVerifyCodeApi()
+			.then(res => {
+				setToken(res.data.verificationToken);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}, []);
 
 	return (

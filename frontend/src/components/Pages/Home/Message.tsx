@@ -1,7 +1,8 @@
 import React from "react";
+import { IDeletedMessage } from "../../../../../shared/interfaces/DeletedMessage";
 
 interface IMessageProps {
-	msg: IMessage;
+	msg: IDeletedMessage;
 	onMessageItsOkayHandler: (id: string) => void;
 	onMessageItsInsultHandler: (id: string) => void;
 }
@@ -14,7 +15,7 @@ const Message: React.FC<IMessageProps> = ({
 	return (
 		<article className="">
 			<p className="text-xs font-medium text-black text-center px-6 py-3 rounded-t-lg border border-b-0 border-black ">
-				{msg.content}
+				{msg.text}
 			</p>
 			<div className="w-full flex items-center text-xs font-medium">
 				<button

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SuccessAlertWithMessage } from "../../UI/Alerts/SuccesAlert";
 
 const Learn: React.FC = () => {
 	const [insult, setInsult] = useState("");
@@ -7,12 +8,14 @@ const Learn: React.FC = () => {
 		setInsult(() => e.target.value);
 	}
 
-	function addInsult(e: React.MouseEvent) {
-		//api
+	function addInsult(e: any) {
+		e.preventDefault();
+		SuccessAlertWithMessage("Insult added successfully Thank you for helping TiiT learn new insults");
+		setInsult(() => "");
 	}
 
 	return (
-		<section className="flex flex-col items-center gap-3 px-5 pt-6">
+		<form className="flex flex-col items-center gap-3 px-5 pt-6" onSubmit={addInsult}>
 			<h1 className="text-base font-bold text-primary text-center">Did TiiT miss any insult?</h1>
 			<input
 				type="text"
@@ -24,7 +27,7 @@ const Learn: React.FC = () => {
 			<button className="text-xs text-white font-medium rounded bg-primary px-9 py-2" onClick={addInsult}>
 				Add insult
 			</button>
-		</section>
+		</form>
 	);
 };
 
