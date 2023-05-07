@@ -80,7 +80,10 @@ export async function linkGroupWithUser(message) {
 		});
 
 		if (!user) {
-			message.sendMessage("❌user not found");
+			client.sendMessage(
+				message.author,
+				"❌user not found, please make sure you entered the correct verification code"
+			);
 			return;
 		}
 
@@ -124,14 +127,12 @@ export async function sendMessage(to, message) {
 
 export async function verifyUser(message) {
 	try {
-		if (!process.env.TIIT_ADMINS.includes(message.author)) {
+		if (!process.env.TIIT_ADMINS.includes(message.from)) {
 			message.reply("You are not an admin");
 			return;
 		}
 
 		const email = message.body.split(" ")[1];
-
-
 
 		const userToVerify = await prisma.user.findUnique({
 			where: {
@@ -155,7 +156,6 @@ export async function verifyUser(message) {
 				isVerified: true,
 			},
 		});
-
 	} catch (err) {
 		console.log("❌error in verifyUser: " + err);
 	}
