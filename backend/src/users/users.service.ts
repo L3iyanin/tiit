@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { PrismaClient } from "@prisma/client";
-import { IUserInRequest } from "../../../shared/interfaces/User";
+import { IUserInRequest, IUsersResponse } from "../../../shared/interfaces/User";
 import { throwServiceError } from "src/error-handling/logger";
 import { IMessageResponse } from "../../../shared/interfaces/General";
 
@@ -65,6 +65,23 @@ export class UsersService {
 			return user;
 		} catch (error) {
 			throwServiceError(error, "UsersService.getCurrentUser");
+		}
+	}
+
+	async getAllUsers(user: IUserInRequest): Promise<any> {
+		try {
+			if (!process.env.TIIT_ADMINS.split(",").includes(user.email)) {
+				throw new HttpException("Unauthorized", HttpStatus.UNAUTHORIZED);
+			}
+
+			const users = await this.prisma.user.findMany();
+
+			return {
+				message: "successfully found all users",
+				users,
+			}
+		} catch (error) {
+			throwServiceError(error, "UsersService.getAllUsers");
 		}
 	}
 }

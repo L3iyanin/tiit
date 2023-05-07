@@ -21,4 +21,9 @@ export class UsersController {
 	getCurrentUser(@Req() req) {
 		return this.usersService.getCurrentUser(req.user);
 	}
+
+	@Get("all")
+	getAllUsers(@Req() req) {
+		return this.usersService.getAllUsers(req.user);
+	}
 }

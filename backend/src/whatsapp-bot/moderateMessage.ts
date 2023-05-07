@@ -55,9 +55,10 @@ export async function moderateMessage(message) {
 			);
 		}
 		if (isBad) {
-			message.delete(true);
+			console.log("🚨🚨🚨 message is bad, deleting...");
+			await message.delete(true);
 			console.log(message);
-			client.sendMessage(
+			await client.sendMessage(
 				message.author,
 				"Your message was deleted because it was flagged as offensive or against the community's policies.\nif you think this was a mistake, please contact the admins."
 			);
@@ -156,7 +157,29 @@ export async function verifyUser(message) {
 				isVerified: true,
 			},
 		});
+
+		message.reply("✅user verified successfully");
 	} catch (err) {
 		console.log("❌error in verifyUser: " + err);
+	}
+}
+
+export async function checkIfBotWorksHere(message) {
+	try {
+		message.reply("🔄checking if bot works here...");
+		const user = await prisma.user.findUnique({
+			where: {
+				whatsappGroupId: message.from,
+			},
+		});
+
+		if (!user) {
+			message.reply("❌bot doesn't work here");
+			return;
+		}
+
+		message.reply("✅bot works here");
+	} catch (err) {
+		console.log("❌error in checkIfBotWorksHere: " + err);
 	}
 }

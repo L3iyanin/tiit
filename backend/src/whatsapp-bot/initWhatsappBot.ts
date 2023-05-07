@@ -1,4 +1,4 @@
-import { linkGroupWithUser, moderateMessage, verifyUser } from "./moderateMessage";
+import { checkIfBotWorksHere, linkGroupWithUser, moderateMessage, verifyUser } from "./moderateMessage";
 
 const qrcode = require("qrcode-terminal");
 const { Client, LocalAuth } = require("kasimat-shira2");
@@ -31,8 +31,10 @@ client.on("ready", () => {
 client.on("message", async (message) => {
 	if (message.body.toLowerCase() === "tiit") {
 		await message.reply("👋 Hello! I'm TiiT, your family friendly chatbot. I'm here to help you moderate your group.");
+		await checkIfBotWorksHere(message);
 		return;
 	}
+
 	if (message.body.toLowerCase().startsWith("verify")) {
 		await verifyUser(message);
 		return;
