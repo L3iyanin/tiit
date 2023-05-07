@@ -50,9 +50,7 @@ export async function moderateMessage(message) {
 		const isBad = reply.includes("true");
 		const isError = reply.includes("error");
 		if (isError) {
-			message.reply(
-				"I cannot process this message right now, because of openAi's free account limitations, try again later"
-			);
+			message.react("❌");
 		}
 		if (isBad) {
 			console.log("🚨🚨🚨 message is bad, deleting...");
