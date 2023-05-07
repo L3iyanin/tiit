@@ -56,8 +56,7 @@ export async function moderateMessage(message) {
 		}
 		if (isBad) {
 			console.log("🚨🚨🚨 message is bad, deleting...");
-			await message.delete(true);
-			console.log(message);
+			message.delete(true);
 			await client.sendMessage(
 				message.author,
 				"Your message was deleted because it was flagged as offensive or against the community's policies.\nif you think this was a mistake, please contact the admins."
@@ -178,7 +177,7 @@ export async function checkIfBotWorksHere(message) {
 			return;
 		}
 
-		message.reply("✅bot works here");
+		message.reply("✅bot works here, admin is: " + user.firstName);
 	} catch (err) {
 		console.log("❌error in checkIfBotWorksHere: " + err);
 	}
