@@ -8,7 +8,6 @@ interface IClipBoardFieldProps {
 }
 
 const ClipBoardField: React.FC<IClipBoardFieldProps> = ({ text }) => {
-	console.log(text);
 
 	function copyText(text: string) {
 		navigator.clipboard
