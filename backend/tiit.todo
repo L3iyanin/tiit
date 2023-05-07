@@ -1,4 +1,4 @@
 [Done✅] make bot work
 [Done✅] make bot reply with "I cannot process this message right now, because of openai free account limitations, try again later"
 [Done✅] save message to the database
-[] verify user
+[] verify user by postman and whatsapp
