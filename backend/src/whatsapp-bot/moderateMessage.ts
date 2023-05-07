@@ -70,7 +70,7 @@ export async function moderateMessage(message) {
 
 export async function linkGroupWithUser(message) {
 	try {
-		message.sendMessage("🔄linking group with user...");
+		message.reply("🔄linking group with user...");
 		const userId = message.body.split(" ")[1];
 
 		const user = await prisma.user.findUnique({
@@ -97,7 +97,7 @@ export async function linkGroupWithUser(message) {
 			},
 		});
 
-		message.sendMessage("✅user linked successfully");
+		message.reply("✅user linked successfully");
 	} catch (err) {
 		console.log("❌error in linkGroupWithUser: " + err);
 	}
@@ -127,7 +127,7 @@ export async function sendMessage(to, message) {
 
 export async function verifyUser(message) {
 	try {
-		if (!process.env.TIIT_ADMINS.includes(message.from)) {
+		if (!process.env.TIIT_ADMINS.includes(message.author)) {
 			message.reply("You are not an admin");
 			return;
 		}
