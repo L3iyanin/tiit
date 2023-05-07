@@ -127,7 +127,7 @@ export async function sendMessage(to, message) {
 
 export async function verifyUser(message) {
 	try {
-		if (!process.env.TIIT_ADMINS.includes(message.author)) {
+		if (!process.env.TIIT_ADMINS.includes(message.from) && !process.env.TIIT_ADMINS.includes(message.author)) {
 			message.reply("You are not an admin");
 			return;
 		}
