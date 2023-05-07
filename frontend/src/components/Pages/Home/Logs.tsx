@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Message from "./Message";
 import { CenteredLoadingSpinner } from "../../UI/Loading/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
-import { fakeMessages } from "../../../data/messages";
 import { removeMessage, setMessages } from "../../../reducers/MessagesSlice";
 import { getDeletedMessagesApi, setMessagesIsInsultApi, setMessagesIsOkayApi } from "../../../services/messages";
 import { IDeletedMessage } from "../../../../../shared/interfaces/DeletedMessage";

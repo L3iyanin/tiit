@@ -1,4 +1,3 @@
-import { LoadingQuote } from "@/content/en/shared";
 import styles from "./LoadingSpinner.module.css";
 
 const LoadingSpinner: React.FC = () => {
