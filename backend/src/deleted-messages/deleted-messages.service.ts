@@ -19,6 +19,7 @@ export class DeletedMessagesService {
 			const deletedMessages = await this.prisma.deletedMessage.findMany({
 				where: {
 					userId: user.id,
+					isVerified: false,
 				},
 			});
 
