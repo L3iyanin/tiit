@@ -13,7 +13,7 @@ const ClipBoardField: React.FC<IClipBoardFieldProps> = ({ text }) => {
 		navigator.clipboard
 			.writeText(text)
 			.then((val) => toast.success("text copied successfully"))
-			.catch((err) => toast.success("failed to copy text", err));
+			.catch((err) => toast.error("failed to copy text", err));
 	}
 
 	return (
