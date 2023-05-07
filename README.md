@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/L3iyanin/tiit/blob/main/tiit.svg" />
+</p>
+
 # Tiit 
 Tiit is a Whatsapp moderator bot that detects and deletes messages with offensive content. Thanks to its AI capabilities, Tiit can not only detects bad words but also their variations and can even spot offensive content even when no bad words were used.
 
