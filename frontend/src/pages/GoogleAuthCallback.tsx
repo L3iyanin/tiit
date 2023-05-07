@@ -18,16 +18,22 @@ const GoogleAuthCallback: React.FC = () => {
 			getUserAuthData(queryString)
 				.then((res) => {
 					dispatch(login(res.data));
-					if (res.data.newUser) {
-						navigate(routes.home);
+					if (!res.data.user.isVerified) {
+						console.log("unverified");
+						navigate(routes.unverified);
+					}
+					else if (!res.data.user.isLinked) {
+						console.log("setup");
+						navigate(routes.setup);
 					}
 					else {
+						console.log("home");
 						navigate(routes.home);
 					}
 				})
 				.catch((err) => {
 					console.error("err", err);
-					navigate(routes.login);
+					navigate(routes.setup);
 				})
 		}
 	}, []);

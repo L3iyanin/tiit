@@ -24,6 +24,28 @@ export const userSlice = createSlice({
 			localStorage.setItem(USER_KEY, JSON.stringify(savedUser));
 		},
 
+		setUserIsVerified: (state) => {
+			if (state.user && !state.user.isVerified) {
+				state.user.isVerified = true;
+				const savedUser: IUserWithToken = {
+					user: state.user,
+					accessToken: state.accessToken!,
+				};
+				localStorage.setItem(USER_KEY, JSON.stringify(savedUser));
+			}
+		},
+
+		setUserIsLinked: (state) => {
+			if (state.user && !state.user.isLinked) {
+				state.user.isLinked = true;
+				const savedUser: IUserWithToken = {
+					user: state.user,
+					accessToken: state.accessToken!,
+				};
+				localStorage.setItem(USER_KEY, JSON.stringify(savedUser));
+			}
+		},
+
 		logout: (state) => {
 			state.user = null;
 			state.accessToken = null;
@@ -48,4 +70,4 @@ export const userSlice = createSlice({
 
 export default userSlice.reducer;
 
-export const { login, logout, getUser } = userSlice.actions;
+export const { login, logout, getUser, setUserIsVerified, setUserIsLinked } = userSlice.actions;

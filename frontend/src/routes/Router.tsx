@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import { CenteredLoadingSpinner } from "../components/UI/Loading/LoadingSpinner";
 import GoogleAuthCallback from "../pages/GoogleAuthCallback";
 import Setup from "../pages/Setup";
+import UnVerified from "../pages/UnVerified";
 const Home = lazy(() => import("../pages/Home"));
 const NotRequireAuth = lazy(() => import("./NotRequireAuth"));
 const RequireAuth = lazy(() => import("./RequireAuth"));
@@ -13,13 +14,15 @@ export const routes: {
 	home: string;
 	login: string;
 	googleCallback: string;
-	setup: string,
+	setup: string;
+	unverified: string;
 } = {
 	landing: "/",
 	home: "/home",
 	login: "/login",
 	googleCallback: "/auth/google/callback",
 	setup: "/setup",
+	unverified: "/unverified",
 };
 
 const Router: React.FC = () => {
@@ -32,11 +35,13 @@ const Router: React.FC = () => {
 					}
 				>
 					<Routes>
-						<Route element={<RequireAuth />}></Route>
-
-						<Route element={<NotRequireAuth />}>
+						<Route element={<RequireAuth />}>
 							<Route path={routes.home} element={<Home />} />
 							<Route path={routes.setup} element={<Setup />} />
+							<Route path={routes.unverified} element={<UnVerified />} />
+						</Route>
+
+						<Route element={<NotRequireAuth />}>
 							<Route path={routes.googleCallback} element={<GoogleAuthCallback />} />
 							<Route path={routes.landing} element={<Login />} />
 							<Route path={routes.login} element={<Login />} />
