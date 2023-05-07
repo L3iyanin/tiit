@@ -11,4 +11,14 @@ export class UsersController {
 	getVerificationToken(@Req() req) {
 		return this.usersService.getVerificationToken(req.user);
 	}
+
+	@Post("verify/:userId")
+	verifyUser(@Param("userId") userId: string, @Req() req) {
+		return this.usersService.verifyUser(userId, req.user);
+	}
+
+	@Get("current")
+	getCurrentUser(@Req() req) {
+		return this.usersService.getCurrentUser(req.user);
+	}
 }

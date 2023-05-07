@@ -38,6 +38,11 @@ export async function moderateMessage(message) {
 				whatsappGroupId: message.from,
 			},
 		});
+
+		if (!user) {
+			return;
+		}
+
 		console.log("📧 📧 📧 message: " + message.body);
 		const reply = await getResponseFromChatGpt(basePrompt + message.body);
 		console.log("reply: " + reply);
@@ -52,8 +57,8 @@ export async function moderateMessage(message) {
 			message.delete(true);
 			console.log(message);
 			client.sendMessage(
-				message.from,
-				"Your message was deleted because it was flagged as offensive or against the community's policies.\nif you think this was a mistake, please contact the moderators."
+				message.author,
+				"Your message was deleted because it was flagged as offensive or against the community's policies.\nif you think this was a mistake, please contact the admins."
 			);
 			await saveDeletedMessage(message, user);
 		}
@@ -64,7 +69,7 @@ export async function moderateMessage(message) {
 
 export async function linkGroupWithUser(message) {
 	try {
-		message.reply("🔄linking group with user...");
+		message.sendMessage("🔄linking group with user...");
 		const userId = message.body.split(" ")[1];
 
 		const user = await prisma.user.findUnique({
@@ -74,7 +79,7 @@ export async function linkGroupWithUser(message) {
 		});
 
 		if (!user) {
-			message.reply("❌user not found");
+			message.sendMessage("❌user not found");
 			return;
 		}
 
@@ -88,7 +93,7 @@ export async function linkGroupWithUser(message) {
 			},
 		});
 
-		message.reply("✅user linked successfully");
+		message.sendMessage("✅user linked successfully");
 	} catch (err) {
 		console.log("❌error in linkGroupWithUser: " + err);
 	}
@@ -114,4 +119,8 @@ export async function sendMessage(to, message) {
 	} catch (err) {
 		console.log("❌error in sendMessage: " + err);
 	}
+}
+
+export async function verifyUser(message) {
+	
 }
