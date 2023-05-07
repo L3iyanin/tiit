@@ -9,6 +9,11 @@ import ClipBoardField from "../components/Pages/Setup/ClipBoardField";
 import { useEffect, useState } from "react";
 import BodyLayout from "../components/UI/Layout/LayoutBody";
 import { getVerifyCodeApi } from "../services/verify";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getCurrentUserApi } from "../services/user";
+import { setUserIsLinked } from "../reducers/UserSlice";
+import { routes } from "../routes/Router";
 
 const Setup = () => {
 	const [token, setToken] = useState("");
@@ -22,6 +27,23 @@ const Setup = () => {
 				console.log(err);
 			});
 	}, []);
+
+	const navigate = useNavigate();;
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		getCurrentUserApi()
+			.then((res) => {
+				if (res.data.isLinked) {
+					dispatch(setUserIsLinked());
+					navigate(routes.home);
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, [])
 
 	return (
 		<BodyLayout>
