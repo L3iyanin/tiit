@@ -19,7 +19,7 @@ model User {
     createdAt       DateTime         @default(now())
     updatedAt       DateTime         @updatedAt
     whatsappGroupId String?          @unique
-    isVerified      Boolean          @default(false)
+    isVerified      Boolean          @default(true)
     isLinked        Boolean          @default(false)
     googleAuth      GoogleAuth[]
     deletedMessages DeletedMessage[]
