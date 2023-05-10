@@ -54,6 +54,7 @@ export async function moderateMessage(message) {
 		}
 		if (isBad) {
 			console.log("🚨🚨🚨 message is bad, deleting...");
+			message.react("🍆")
 			message.delete(true);
 			await saveDeletedMessage(message, user);
 		}
