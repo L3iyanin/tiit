@@ -55,10 +55,6 @@ export async function moderateMessage(message) {
 		if (isBad) {
 			console.log("🚨🚨🚨 message is bad, deleting...");
 			message.delete(true);
-			await client.sendMessage(
-				message.author,
-				"Your message was deleted because it was flagged as offensive or against the community's policies.\nif you think this was a mistake, please contact the admins."
-			);
 			await saveDeletedMessage(message, user);
 		}
 	} catch (err) {
